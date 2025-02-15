@@ -25,11 +25,11 @@ const Timer = () => {
     setTimer({
       hours: 0,
       minutes: 0,
-      seconds: 0
+      seconds: 0 
     })
   }
 
-  const countdown = (timer) => {
+  const countdown = () => {
     setTimer((prev) => {
       if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
       if (prev.minutes > 0) return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
@@ -50,7 +50,7 @@ const Timer = () => {
   return (
     <>
       <div className="flex flex-col items-center justify-center min-h-screen bg-black font-sans gap-8 p-4">
-        {/* Main Display */}
+
         {!isFinished && <div className="MainDisplay bg-gray-600 p-12 rounded-3xl shadow-2xl">
           <Display
             className="flex gap-6 items-center justify-center font-mono"
@@ -63,7 +63,7 @@ const Timer = () => {
             seconds={timer.seconds}
           />
         </div>}
-        {/* Time Chooser */}
+
         {isFinished &&
           <div className="TimeChooser bg-gray-600 p-6 rounded-xl shadow-lg w-full max-w-md">
             <TimeChooser
@@ -76,13 +76,15 @@ const Timer = () => {
           </div>
         }
 
-        {/* Control Buttons */}
         <div className="Buttons flex gap-4">
           {!isFinished && (
             <>
               <button
                 className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg text-lg font-medium transition-colors duration-200 shadow-md"
-                onClick={toZero}
+                onClick={() => {
+                  setIsPaused(true) // weird workaround to stop the alarm from triggering when the reset button is clicked
+                  toZero()
+                }}
               >
                 ■ Reset
               </button>
