@@ -3,14 +3,14 @@ import Display from './Display';
 import { useState, useEffect } from 'react';
 import TimeChooser from './TimeChooser';
 
-const Timer = ({ hours, minutes, seconds }) => {
+const Timer = () => {
   const [isPaused, setIsPaused] = useState(false);
 
   const [timer, setTimer] = useState(
     {
-      hours,
-      minutes,
-      seconds,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
     }
   )
 
@@ -33,7 +33,6 @@ const Timer = ({ hours, minutes, seconds }) => {
     });
   }
 
-
   useEffect(() => {
     if (isPaused || isFinished) return;
     const timeoutId = setTimeout(() => {
@@ -49,18 +48,18 @@ const Timer = ({ hours, minutes, seconds }) => {
           minutes={timer.minutes}
           seconds={timer.seconds} />
       </div>
+      <div className='TimeChooser'>
+        {isFinished && <TimeChooser setTimer={setTimer}/>}
+      </div>
       <div className="Buttons">
         {!isFinished &&
-          <button onClick={toZero}>Reset</button>}
+          <button className='btn' onClick={toZero}>Reset</button>}
         {!isFinished && <button onClick={
           () => {
             console.log(isPaused)
             setIsPaused(!isPaused)
           }
         }>{isPaused ? "Resume" : "Pause"}</button>}
-      </div>
-      <div className='TimeChooser'>
-        <TimeChooser setTimer={setTimer}/>
       </div>
     </>
   )

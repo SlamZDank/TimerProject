@@ -2,7 +2,7 @@ import React from 'react'
 
 const Reset = ({toZero}) => {
   return (
-    <button onClick={() => {
+    <button className='btn' onClick={() => {
       toZero()
     }}>Reset</button>
   )
