@@ -16,7 +16,7 @@ const TimeChooser = ({ setTimer, setIsPaused }) => {
       <div className="time-chooser flex flex-col md:flex-row gap-4 w-full max-w-md">
         <input
           type="number"
-          min={0}
+          min={1}
           max={24}
           step={1}
           placeholder="HH"
@@ -28,7 +28,7 @@ const TimeChooser = ({ setTimer, setIsPaused }) => {
 
         <input
           type="number"
-          min={0}
+          min={1}
           max={59}
           step={1}
           placeholder="MM"
